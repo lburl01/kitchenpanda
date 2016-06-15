@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block title %} Eat Leftovers {% endblock %} {% block content %}
+
+<div class="row">
+  <form method="POST" action="/leftovers/eat/">
+    <div class="col-md-12">
+      <!-- NEW ROW -->
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-2">
+                <div class="form-group">
+                    <label for="leftover_01">Name</label>
+                    <input type="text" class="form-control" id="leftover_01" name="leftover_01">
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="form-group">
+                    <label for="location_01">Location</label>
+                    <select class="form-control" id="location_01" name="location_01">
+                        <option>Fridge</option>
+                        <option>Freezer</option>
+                        <option>Pantry</option>
+                        <option>Counter</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2 col-xs-offset-5">
+            <input type="submit" class="btn-lg btn-primary btn-block" value="Submit">
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
+{% if leftover_removed_string %}
+</br>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">Leftovers Removed</div>
+            <div class="panel-body">
+                {{ leftover_removed_string }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% block script %}{{ super ()}}
+<script type="text/javascript">
+var ajax = new XMLHttpRequest();
+ajax.open("GET", "/leftovers/in_stock/", true);
+ajax.onload = function() {
+	var list = JSON.parse(ajax.responseText).map(function(i) { return i; });
+	new Awesomplete(document.querySelector("#leftover_01"), { list: list });
+};
+ajax.send();
+</script>
+{% endblock %}
+{% endblock %}

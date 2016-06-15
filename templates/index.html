@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+Main
+{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-xs-6">
+    <h3>Oldest Goods</h3>
+    <table class="table table-striped">
+      <thead>
+			<tr>
+				<th>Good</th>
+				<th>Oldest</th>
+				<th>Quantity</th>
+				<th>Location</th>
+			</tr>
+    </thead>
+    <tbody>
+			{% for good in results_list_goods %}
+			<tr>
+				<td>{{good['ingredient']}}</td>
+				<td>{{good['humanized_date']}} ({{good['date_string']}})</td>
+				<td>{{good['count']}}</td>
+				<td>{{good['location']}}</td>
+			</tr>
+			{% endfor %}
+    </tbody>
+		</table>
+  </div>
+  <div class="col-xs-6">
+    <h3>Oldest Leftovers</h3>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Food</th>
+        <th>Made</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+  </tbody>
+      {% for leftover in results_list_leftovers %}
+      <tr>
+        <td>{{leftover['leftover']}}</td>
+        <td>{{leftover['humanized_date']}} ({{leftover['date_string']}})</td>
+        <td>{{leftover['location']}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+{% endblock %}

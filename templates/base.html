@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}{% endblock %} • Kitchen Panda</title>
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/awesomplete.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">&#127860; &#128060;</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a href="/">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Goods <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/goods/">View</a></li>
+                            <li><a href="/goods/enter/">Enter</a></li>
+                            <li><a href="/goods/remove/">Use</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Leftovers <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/leftovers/">View</a></li>
+                            <li><a href="/leftovers/enter/">Enter</a></li>
+                            <li><a href="/leftovers/eat/">Eat</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recipes <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Make Recipe</a></li>
+                            <li><a href="#">RecipeGuru</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Housekeeping <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Add Substitutions</a></li>
+                            <li><a href="#">Add Equivalencies</a></li>
+                            <li><a href="#">Ingredient Parse Test</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="navbar-text navbar-right">v0.1</p>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    {% block script %}
+    <script src="{{ url_for('static', filename='js/bootstrap.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/awesomplete.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-toggle').dropdown();
+        });
+        $("form input").on("keypress", function(e) {
+          return e.keyCode != 13;
+        });
+    </script>
+    {% endblock %}
+</body>
+
+</html>

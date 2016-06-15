@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+Main
+{% endblock %}
+{% block content %}
+<input id="ajax-example">
+<input id="ajax-example2">
+
+{% block script %}{{ super ()}}
+<script>
+var ajax = new XMLHttpRequest();
+ajax.open("GET", "/ingredients/all", true);
+ajax.onload = function() {
+	var list = JSON.parse(ajax.responseText).map(function(i) { return i; });
+	new Awesomplete(document.querySelector("#ajax-example"),{ list: list });
+  new Awesomplete(document.querySelector("#ajax-example2"),{ list: list });
+};
+ajax.send();
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+Leftovers
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="column-12">
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Food</th>
+				<th>Made</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for leftover in leftovers_results %}
+			<tr>
+				<td>{{leftover['leftover']}}</td>
+				<td>{{leftover['humanized_date']}} ({{leftover['date_string']}})</td>
+				<td>{{leftover['location']}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

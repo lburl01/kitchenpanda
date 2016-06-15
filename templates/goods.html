@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+Goods
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="column-12">
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Good</th>
+				<th>Oldest</th>
+				<th>Quantity</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for good in goods_results %}
+			<tr>
+				<td>{{good['ingredient']}}</td>
+				<td>{{good['humanized_date']}} ({{good['date_string']}})</td>
+				<td>{{good['count']}}</td>
+				<td>{{good['location']}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
